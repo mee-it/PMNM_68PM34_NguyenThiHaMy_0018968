@@ -10,4 +10,7 @@ class home
   {
     echo "Đây là trang giới thiệu";
   }
+  public function login(){
+   require_once'../app/views/home/login.php'; 
+  }
 }
