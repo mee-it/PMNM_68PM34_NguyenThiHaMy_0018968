@@ -11,13 +11,21 @@ class sinhvien extends Controller
     $totalpage = $result['totalpage'];
     //trả về view
     //require_once '../app/views/sinhvien/index.php';
-    $this->view("layout/masterlayout", ['viewname' => 'sinhvien/index', 'sinhviens' => $sinhviens, 'title' => 'Danh sách sinh viên', 'totalpage' => $totalpage]);
+    $this->view("layout/masterlayout", ['viewname' => 'sinhvien/index', 'sinhviens' => $sinhviens, 'title' => 'Danh sách sinh viên', 'totalpage' => $totalpage, 'offset' => $offset]);
   }
 
   public function create()
   {
-    require_once '../app/views/sinhvien/create.php';
+    //require_once '../app/views/sinhvien/create.php';
+    $this->view(
+      "layout/masterlayout",
+      [
+        'viewname' => 'sinhvien/create',
+        'title' => 'Thêm sinh viên'
+      ]
+    );
   }
+
   public function store()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,5 +44,43 @@ class sinhvien extends Controller
         $_SESSION['error'] = "Thêm sinh viên thất bại!";
       }
     }
+  }
+  public function edit($id)
+  {
+    $sinhvienModel = $this->model('sinhvienModel');
+    $sinhvien = $sinhvienModel->findById($id);
+    //require_once '../app/views/sinhvien/edit.php';
+    $this->view("layout/masterlayout", ['viewname' => 'sinhvien/edit', 'sinhvien' => $sinhvien, 'title' => 'Chỉnh sửa sinh viên']);
+  }
+  public function update($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $data = [
+        'hoten' => $_POST['hoten'],
+        'gioitinh' => $_POST['gioitinh'],
+        'mssv' => $_POST['mssv']
+      ];
+      $sinhvienModel = $this->model('sinhvienModel');
+      $result = $sinhvienModel->update($id, $data);
+      if ($result) {
+        $_SESSION['success'] = "Cập nhật sinh viên thành công!";
+        header("Location: /sinhvien/index");
+        exit();
+      } else {
+        $_SESSION['error'] = "Cập nhật sinh viên thất bại!";
+      }
+    }
+  }
+  public function delete($id)
+  {
+    $sinhvienModel = $this->model('sinhvienModel');
+    $result = $sinhvienModel->delete($id);
+    if ($result) {
+      $_SESSION['success'] = "Xóa sinh viên thành công!";
+    } else {
+      $_SESSION['error'] = "Xóa sinh viên thất bại!";
+    }
+    header("Location: /sinhvien/index");
+    exit();
   }
 }
