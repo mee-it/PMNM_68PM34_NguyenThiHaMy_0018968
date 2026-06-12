@@ -112,14 +112,18 @@
             <th>Họ tên</th>
             <th>Giới tính</th>
             <th>MSSV</th>
+            <th>Tên lớp</th>
             <th>Thao tác</th>
+
         </tr>
+        <?php $stt = $offset + 1; ?>
         <?php foreach ($sinhviens as $sv): ?>
             <tr>
-                <td><?php echo $sv['id']; ?></td>
+                <td><?php echo $stt++; ?></td>
                 <td><?php echo $sv['hoten']; ?></td>
                 <td><?php echo $sv['gioitinh']; ?></td>
                 <td><?php echo $sv['mssv']; ?></td>
+                <td><?php echo $sv['tenlop']; ?></td>
                 <td>
                     <a href="/sinhvien/edit/<?php echo $sv['id']; ?>" class="btn-edit">
                         Sửa
