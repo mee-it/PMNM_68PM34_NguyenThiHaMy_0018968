@@ -7,22 +7,43 @@
     <title><?php echo $title; ?></title>
 
     <style>
-        footer {
-            background-color: #4A22D4;
-            /* Màu tím chính */
-            color: white;
-            padding: 30px 0;
-        }
+    footer {
+        background: linear-gradient(135deg, #ffb8d2, #b8d8ff, #cdb8ff);
+        color: #4f3f7d;
+        padding: 30px 0;
+        margin-top: 50px;
+        box-shadow: 0 -4px 18px rgba(166, 148, 255, 0.25);
+    }
 
-        footer a {
-            color: #e0d4ff;
-            text-decoration: none;
-        }
+    footer p {
+        margin-bottom: 0.5rem;
+    }
 
-        footer a:hover {
-            color: white;
-            text-decoration: underline;
-        }
+    footer strong {
+        color: #6a53a8;
+    }
+
+    footer a {
+        color: #6a53a8;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #4f3f7d;
+        text-decoration: underline;
+    }
+
+    footer {
+        background: rgba(255, 245, 250, 0.9);
+        background-image: linear-gradient(135deg,
+                #ffb8d2,
+                #b8d8ff,
+                #cdb8ff);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+    }
     </style>
 </head>
 

@@ -7,48 +7,74 @@
     <title><?php echo $title; ?> </title>
 
     <style>
-    .navbar {
-        background-color: #4A22D4 !important;
-        /* Màu tím chính */
-        box-shadow: 0 2px 10px rgba(74, 34, 212, 0.3);
-    }
+        .navbar {
+            background: linear-gradient(135deg, #ffb8d2, #b8d8ff, #cdb8ff) !important;
+            box-shadow: 0 4px 18px rgba(166, 148, 255, 0.35);
+            backdrop-filter: blur(10px);
+        }
 
-    .navbar-brand {
-        font-weight: bold;
-        font-size: 1.45rem;
-    }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.45rem;
+            color: #4f3f7d !important;
+            letter-spacing: 0.5px;
+        }
 
-    .nav-link {
-        font-weight: 500;
-        color: white !important;
-    }
+        .nav-link {
+            font-weight: 500;
+            color: #4f3f7d !important;
+            transition: all 0.3s ease;
+            padding: 8px 14px !important;
+            border-radius: 12px;
+        }
 
-    .nav-link:hover,
-    .nav-link.active {
-        color: #e0d4ff !important;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-    }
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #6a53a8 !important;
+            transform: translateY(-1px);
+        }
 
-    .dropdown-menu {
-        background-color: #5b37e0;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
+        .dropdown-menu {
+            background: rgba(255, 245, 250, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(205, 184, 255, 0.4);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(166, 148, 255, 0.25);
+            padding: 8px;
+        }
 
-    .dropdown-item {
-        color: white;
-    }
+        .dropdown-item {
+            color: #4f3f7d;
+            border-radius: 10px;
+            padding: 10px 14px;
+            transition: all 0.25s ease;
+        }
 
-    .dropdown-item:hover {
-        background-color: #4A22D4;
-    }
+        .dropdown-item:hover {
+            background: linear-gradient(90deg, #ffc8df, #c8e0ff);
+            color: #6a53a8;
+            transform: translateX(3px);
+        }
+
+        .navbar-toggler {
+            border-color: rgba(79, 63, 125, 0.3);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.15rem rgba(184, 216, 255, 0.8);
+        }
+
+        body {
+            background: linear-gradient(180deg, #fff0f6, #eef5ff);
+            min-height: 100vh;
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar chính -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">QLSinhVien</a>
 
@@ -60,7 +86,7 @@
                 <ul class="navbar-nav">
 
                     <!-- Quản lý sinh viên - Dropdown -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown me-4">
                         <a class="nav-link dropdown-toggle active" href="#" id="sinhvienDropdown" role="button"
                             data-bs-toggle="dropdown">
                             Quản lý sinh viên
@@ -76,8 +102,19 @@
                     </li>
 
                     <!-- Quản lý lớp học -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/lop/index">Quản lý lớp học</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="lophocDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            Quản lý lớp học
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="lophocDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/lophoc/create">Thêm lớp học</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/lophoc/index/5/0">Xem danh sách</a>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>
