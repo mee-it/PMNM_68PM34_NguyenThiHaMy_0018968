@@ -17,11 +17,16 @@ class sinhvien extends Controller
   public function create()
   {
     //require_once '../app/views/sinhvien/create.php';
+    $lophocModel = $this->model('lophocModel');
+
+    $lophocs = $lophocModel->getAllLopHoc();
+
     $this->view(
       "layout/masterlayout",
       [
         'viewname' => 'sinhvien/create',
-        'title' => 'Thêm sinh viên'
+        'title' => 'Thêm sinh viên',
+        'lophocs' => $lophocs
       ]
     );
   }
@@ -32,7 +37,8 @@ class sinhvien extends Controller
       $data = [
         'hoten' => $_POST['hoten'],
         'gioitinh' => $_POST['gioitinh'],
-        'mssv' => $_POST['mssv']
+        'mssv' => $_POST['mssv'],
+        'malop' => $_POST['malop']
       ];
       $sinhvienModel = $this->model('sinhvienModel');
       $result = $sinhvienModel->create($data);
@@ -48,9 +54,20 @@ class sinhvien extends Controller
   public function edit($id)
   {
     $sinhvienModel = $this->model('sinhvienModel');
+    $lophocModel = $this->model('lophocModel');
+
     $sinhvien = $sinhvienModel->findById($id);
-    //require_once '../app/views/sinhvien/edit.php';
-    $this->view("layout/masterlayout", ['viewname' => 'sinhvien/edit', 'sinhvien' => $sinhvien, 'title' => 'Chỉnh sửa sinh viên']);
+    $lophocs = $lophocModel->getAllLopHoc();
+
+    $this->view(
+      "layout/masterlayout",
+      [
+        'viewname' => 'sinhvien/edit',
+        'sinhvien' => $sinhvien,
+        'lophocs' => $lophocs,
+        'title' => 'Chỉnh sửa sinh viên'
+      ]
+    );
   }
   public function update($id)
   {
@@ -58,7 +75,8 @@ class sinhvien extends Controller
       $data = [
         'hoten' => $_POST['hoten'],
         'gioitinh' => $_POST['gioitinh'],
-        'mssv' => $_POST['mssv']
+        'mssv' => $_POST['mssv'],
+        'malop' => $_POST['malop']
       ];
       $sinhvienModel = $this->model('sinhvienModel');
       $result = $sinhvienModel->update($id, $data);

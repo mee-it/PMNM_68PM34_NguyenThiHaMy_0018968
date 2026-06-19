@@ -16,7 +16,8 @@ class sinhvienModel
     }
     public function create($data)
     {
-        $query = "INSERT INTO tbl_sinhviens (hoten, gioitinh, mssv) VALUES (:hoten, :gioitinh, :mssv)";
+        $query = "INSERT INTO tbl_sinhviens (hoten, gioitinh, mssv, malop)
+          VALUES (:hoten, :gioitinh, :mssv, :malop)";
         $stmt = $this->conn->prepare($query);
         if ($stmt->execute($data)) {
             return true;
@@ -56,7 +57,12 @@ LIMIT :limit OFFSET :offset
     }
     public function update($id, $data)
     {
-        $query = "UPDATE tbl_sinhviens SET hoten = :hoten, gioitinh = :gioitinh, mssv = :mssv WHERE id = :id";
+        $query = "UPDATE tbl_sinhviens
+          SET hoten = :hoten,
+              gioitinh = :gioitinh,
+              mssv = :mssv,
+              malop = :malop
+          WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $data['id'] = $id;
         if ($stmt->execute($data)) {

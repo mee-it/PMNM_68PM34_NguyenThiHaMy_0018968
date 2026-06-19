@@ -32,7 +32,7 @@
             width: 80%;
             /* Tăng độ rộng cho đẹp hơn */
             max-width: 1100px;
-            margin: 20px auto;
+            margin: 20px auto 0;
             padding: 20px;
         }
 

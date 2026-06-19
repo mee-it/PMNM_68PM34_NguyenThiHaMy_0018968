@@ -25,6 +25,24 @@
                     <input type="text" name="mssv" class="form-control" value="<?php echo $sinhvien['mssv']; ?>"
                         required>
                 </div>
+                <div class="mb-3">
+                    <label>Lớp học</label>
+
+                    <select name="malop" class="form-control" required>
+
+                        <?php foreach ($lophocs as $lop): ?>
+
+                            <option value="<?= $lop['malop'] ?>"
+                                <?= $lop['malop'] == $sinhvien['malop'] ? 'selected' : '' ?>>
+
+                                <?= $lop['tenlop'] ?>
+
+                            </option>
+
+                        <?php endforeach; ?>
+
+                    </select>
+                </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-warning">
