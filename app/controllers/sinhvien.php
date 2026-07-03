@@ -2,16 +2,62 @@
 require_once '../app/core/Controller.php';
 class sinhvien extends Controller
 {
-  public function index($limit = 5, $offset = 0, $search = '')
+  public function index($limit = 5, $offset = 0)
   {
-    $sinhvienModel = $this->model('sinhvienModel');
 
-    $result = $sinhvienModel->paging($limit, $offset, $search);
+    $sinhvienModel = $this->model('sinhvienModel');
+    $lophocModel = $this->model('lophocModel');
+    $keyword = $_GET['keyword'] ?? '';
+
+
+    $malop = $_GET['malop'] ?? '';
+
+    $sort = $_GET['sort'] ?? '';
+
+    $limit = $_GET['limit'] ?? $limit;
+
+    $result = $sinhvienModel->paging(
+      $limit,
+      $offset,
+      $keyword,
+      $malop,
+      $sort
+    );
+
     $sinhviens = $result['sinhviens'];
+
     $totalpage = $result['totalpage'];
-    //trả về view
-    //require_once '../app/views/sinhvien/index.php';
-    $this->view("layout/masterlayout", ['viewname' => 'sinhvien/index', 'sinhviens' => $sinhviens, 'title' => 'Danh sách sinh viên', 'totalpage' => $totalpage, 'offset' => $offset]);
+
+    $totalrecord = $result['totalrecord'];
+
+    $lophocs = $lophocModel->getAllLopHoc();
+
+    $this->view(
+      "layout/masterlayout",
+      [
+        'viewname' => 'sinhvien/index',
+
+        'title' => 'Danh sách sinh viên',
+
+        'sinhviens' => $sinhviens,
+
+        'totalpage' => $totalpage,
+
+        'totalrecord' => $totalrecord,
+
+        'offset' => $offset,
+
+        'limit' => $limit,
+
+        'keyword' => $keyword,
+
+        'malop' => $malop,
+
+        'sort' => $sort,
+
+        'lophocs' => $lophocs
+      ]
+    );
   }
 
   public function create()
@@ -41,14 +87,27 @@ class sinhvien extends Controller
         'malop' => $_POST['malop']
       ];
       $sinhvienModel = $this->model('sinhvienModel');
+      if ($sinhvienModel->findByMSSV($data['mssv'])) {
+        $_SESSION['error'] = "MSSV đã tồn tại!";
+        header("Location: /sinhvien/create");
+        exit();
+      }
       $result = $sinhvienModel->create($data);
-      if ($result) {
+      if ($result === true) {
         $_SESSION['success'] = "Thêm sinh viên thành công!";
         header("Location: /sinhvien/index");
         exit();
-      } else {
-        $_SESSION['error'] = "Thêm sinh viên thất bại!";
       }
+      if ($result === 'duplicate') {
+        $_SESSION['error'] = "MSSV đã tồn tại!";
+        header("Location: /sinhvien/create");
+        exit();
+      }
+
+
+      $_SESSION['error'] = "Thêm sinh viên thất bại!";
+      header("Location: /sinhvien/create");
+      exit();
     }
   }
   public function edit($id)
@@ -79,14 +138,20 @@ class sinhvien extends Controller
         'malop' => $_POST['malop']
       ];
       $sinhvienModel = $this->model('sinhvienModel');
+      if ($sinhvienModel->findByMssvExceptId($data['mssv'], $id)) {
+        $_SESSION['error'] = "MSSV đã tồn tại!";
+        header("Location: /sinhvien/edit/$id");
+        exit();
+      }
       $result = $sinhvienModel->update($id, $data);
       if ($result) {
         $_SESSION['success'] = "Cập nhật sinh viên thành công!";
         header("Location: /sinhvien/index");
         exit();
-      } else {
-        $_SESSION['error'] = "Cập nhật sinh viên thất bại!";
       }
+      $_SESSION['error'] = "Cập nhật sinh viên thất bại!";
+      header("Location: /sinhvien/edit/$id");
+      exit();
     }
   }
   public function delete($id)
