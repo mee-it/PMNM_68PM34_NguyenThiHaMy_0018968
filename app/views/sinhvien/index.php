@@ -8,174 +8,376 @@
 
 
     <style>
-    h1 {
-        text-align: center;
-        color: #4f3f7d;
-        margin: 30px 0;
-        font-weight: 700;
-    }
+        h1 {
+            text-align: center;
+            color: #4f3f7d;
+            margin: 30px 0;
+            font-weight: 700;
+        }
 
-    table {
-        width: 85%;
-        margin: auto;
-        border-collapse: separate;
-        border-spacing: 0;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 8px 24px rgba(166, 148, 255, 0.15);
-        border-radius: 18px;
-        overflow: hidden;
-    }
+        table {
+            width: 85%;
+            margin: auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(166, 148, 255, 0.15);
+            border-radius: 18px;
+            overflow: hidden;
+        }
 
-    th {
-        background-color: #ffd1e3;
-        color: #4f3f7d;
-        padding: 14px;
-        font-weight: 600;
-    }
+        th {
+            background-color: #ffd1e3;
+            color: #4f3f7d;
+            padding: 14px;
+            font-weight: 600;
+        }
 
-    td {
-        padding: 14px;
-        text-align: center;
-        border-bottom: 1px solid #f1e8ff;
-        color: #5f5878;
-    }
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #f1e8ff;
+            color: #5f5878;
+        }
 
-    tr:last-child td {
-        border-bottom: none;
-    }
+        tr:last-child td {
+            border-bottom: none;
+        }
 
-    tr:nth-child(even) {
-        background-color: #fcf8ff;
-    }
+        tr:nth-child(even) {
+            background-color: #fcf8ff;
+        }
 
-    tr:hover {
-        background-color: #f3efff;
-        transition: all 0.25s ease;
-    }
+        tr:hover {
+            background-color: #f3efff;
+            transition: all 0.25s ease;
+        }
 
-    /* Pagination */
+        /* Pagination */
 
-    .pagination {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+        .pagination {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-    .pagination a {
-        display: inline-block;
-        min-width: 42px;
-        padding: 10px 14px;
-        text-decoration: none;
-        color: #6a53a8;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid #d8c8ff;
-        border-radius: 12px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(166, 148, 255, 0.1);
-    }
+        .pagination a {
+            display: inline-block;
+            min-width: 42px;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #6a53a8;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #d8c8ff;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(166, 148, 255, 0.1);
+        }
 
-    .pagination a:hover {
-        background: linear-gradient(135deg, #ffb8d2, #b8d8ff);
-        color: #4f3f7d;
-        transform: translateY(-2px);
-    }
-
-
-    /* Nút sửa */
-
-    .btn-edit {
-        display: inline-block;
-        background-color: #b8d8ff;
-        color: #365a8c;
-        padding: 8px 14px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: all 0.25s ease;
-        margin-right: 6px;
-    }
-
-    .btn-edit:hover {
-        background-color: #9fc9ff;
-        color: #27456f;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(159, 201, 255, 0.4);
-    }
+        .pagination a:hover {
+            background: linear-gradient(135deg, #ffb8d2, #b8d8ff);
+            color: #4f3f7d;
+            transform: translateY(-2px);
+        }
 
 
-    /* Nút xóa */
+        /* Nút sửa */
 
-    .btn-delete {
-        display: inline-block;
-        background-color: #ffc4b8;
-        color: #9a4d3f;
-        padding: 8px 14px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: all 0.25s ease;
-    }
+        .btn-edit {
+            display: inline-block;
+            background-color: #b8d8ff;
+            color: #365a8c;
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            margin-right: 6px;
+        }
 
-    .btn-delete:hover {
-        background-color: #ffae9d;
-        color: #7a382b;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 174, 157, 0.4);
-    }
+        .btn-edit:hover {
+            background-color: #9fc9ff;
+            color: #27456f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(159, 201, 255, 0.4);
+        }
+
+
+        /* Nút xóa */
+
+        .btn-delete {
+            display: inline-block;
+            background-color: #ffc4b8;
+            color: #9a4d3f;
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .btn-delete:hover {
+            background-color: #ffae9d;
+            color: #7a382b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 174, 157, 0.4);
+        }
+
+        .filter-form {
+            width: 85%;
+            margin: 20px auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 12px;
+        }
+
+        .filter-form select,
+        .filter-form input {
+            flex: 1;
+        }
+
+        .filter-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #b8d8ff;
+            color: #365a8c;
+            font-weight: bold;
+        }
+
+        .filter-form button:hover {
+            background: #9fc9ff;
+        }
+
+        .reset-btn {
+            padding: 10px 20px;
+            background: #ffc4b8;
+            color: #9a4d3f;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        th a {
+            color: #4f3f7d;
+            text-decoration: none;
+        }
+
+        th a:hover {
+            text-decoration: underline;
+        }
+
+        .record-info {
+            width: 85%;
+            margin: auto;
+            margin-top: 10px;
+
+            color: #999;
+            font-size: 13px;
+        }
     </style>
 </head>
 
 <body>
-    <h1><?php echo $title; ?></h1>
+    <h1><?php echo $title; ?>
+        (<?php echo $totalrecord; ?>)</h1>
+    <?php
 
+    $pageSizes = [5, 10];
+
+    if ($totalrecord > 10) {
+        $pageSizes[] = 20;
+    }
+
+    $pageSizes[] = $totalrecord;
+
+    $pageSizes = array_unique($pageSizes);
+
+    sort($pageSizes);
+
+    ?>
+    <form action="/sinhvien/index" method="GET" class="filter-form">
+
+        <input type="text" name="keyword" placeholder="Tìm theo tên hoặc MSSV..." value="<?= $keyword ?>">
+
+
+        <select name="malop" onchange="this.form.submit()">
+
+            <option value="">
+                Tất cả lớp
+            </option>
+
+            <?php foreach ($lophocs as $lop): ?>
+
+                <option value="<?= $lop['malop'] ?>" <?= $malop == $lop['malop'] ? 'selected' : '' ?>>
+                    <?= $lop['tenlop'] ?>
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+
+        <select name="limit" onchange="this.form.submit()">
+
+            <?php foreach ($pageSizes as $size): ?>
+
+                <option value="<?= $size ?>" <?= $limit == $size ? 'selected' : '' ?>>
+                    <?= $size ?> / trang
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+
+        <button type="submit">
+            Tìm kiếm
+        </button>
+
+        <a href="/sinhvien/index" class="reset-btn">
+            Đặt lại
+        </a>
+
+    </form>
+    <?php
+
+    $mssvSort =
+        ($sort == 'mssv_asc')
+        ? 'mssv_desc'
+        : 'mssv_asc';
+
+    $hotenSort =
+        ($sort == 'hoten_asc')
+        ? 'hoten_desc'
+        : 'hoten_asc';
+
+    ?>
     <table>
         <tr>
             <th>STT</th>
-            <th>Họ tên</th>
+            <th>
+
+                <a href="?keyword=<?= $keyword ?>
+&malop=<?= $malop ?>
+&limit=<?= $limit ?>
+&sort=<?= $hotenSort ?>">
+
+                    Họ tên
+
+                    <?=
+                    $sort == 'hoten_asc'
+                        ? '▲'
+                        : (
+                            $sort == 'hoten_desc'
+                            ? '▼'
+                            : ''
+                        )
+                    ?>
+
+                </a>
+
+            </th>
             <th>Giới tính</th>
-            <th>MSSV</th>
+            <th>
+
+                <a href="?keyword=<?= $keyword ?>
+&malop=<?= $malop ?>
+&limit=<?= $limit ?>
+&sort=<?= $mssvSort ?>">
+
+                    MSSV
+
+                    <?=
+                    $sort == 'mssv_asc'
+                        ? '▲'
+                        : (
+                            $sort == 'mssv_desc'
+                            ? '▼'
+                            : ''
+                        )
+                    ?>
+
+                </a>
+
+            </th>
             <th>Tên lớp</th>
             <th>Thao tác</th>
 
         </tr>
         <?php $stt = $offset + 1; ?>
         <?php foreach ($sinhviens as $sv): ?>
-        <tr>
-            <td><?php echo $stt++; ?></td>
-            <td><?php echo $sv['hoten']; ?></td>
-            <td><?php echo $sv['gioitinh']; ?></td>
-            <td><?php echo $sv['mssv']; ?></td>
-            <td><?php echo $sv['tenlop']; ?></td>
-            <td>
-                <a href="/sinhvien/edit/<?php echo $sv['id']; ?>" class="btn-edit">
-                    Sửa
-                </a>
+            <tr>
+                <td><?php echo $stt++; ?></td>
+                <td><?php echo $sv['hoten']; ?></td>
+                <td><?php echo $sv['gioitinh']; ?></td>
+                <td><?php echo $sv['mssv']; ?></td>
+                <td><?php echo $sv['tenlop']; ?></td>
+                <td>
+                    <a href="/sinhvien/edit/<?php echo $sv['id']; ?>" class="btn-edit">
+                        Sửa
+                    </a>
 
-                <a href="/sinhvien/delete/<?php echo $sv['id']; ?>" class="btn-delete"
-                    onclick="return confirm('Bạn có chắc muốn xóa sinh viên này?')">
-                    Xóa
-                </a>
-            </td>
-        </tr>
+                    <a href="/sinhvien/delete/<?php echo $sv['id']; ?>" class="btn-delete"
+                        onclick="return confirm('Bạn có chắc muốn xóa sinh viên này?')">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
         <?php endforeach; ?>
     </table>
+
 
     <!-- Phân trang -->
     <div class="pagination">
         <?php
-        $pagesize = 5;
+
         for ($i = 1; $i <= $totalpage; $i++) {
-            $offset = ($i - 1) * $pagesize;
-            echo "<a href='/sinhvien/index/$pagesize/$offset'>$i</a> ";
+
+            $newOffset = ($i - 1) * $limit;
+
+            echo "<a href='/sinhvien/index/$limit/$newOffset?keyword=$keyword&malop=$malop&sort=$sort&limit=$limit'>$i</a>";
         }
         ?>
     </div>
+    <?php
+
+    $start = $totalrecord > 0
+        ? $offset + 1
+        : 0;
+
+    $end = min(
+        $offset + $limit,
+        $totalrecord
+    );
+
+    ?>
+
+    <p class="record-info">
+
+        Hiển thị
+
+        <?= $start ?>
+
+        -
+
+        <?= $end ?>
+
+        trong
+
+        <?= $totalrecord ?>
+
+        bản ghi
+
+    </p>
 </body>
 
 </html>
